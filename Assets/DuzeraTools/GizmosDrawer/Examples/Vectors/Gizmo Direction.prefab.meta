@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a03d2a2983a947c4ebeb4b7d3eb36d15
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 371358
+  packageName: Gizmos Drawer
+  packageVersion: 1.0
+  assetPath: Assets/DuzeraTools/GizmosDrawer/Examples/Vectors/Gizmo Direction.prefab
+  uploadId: 910692

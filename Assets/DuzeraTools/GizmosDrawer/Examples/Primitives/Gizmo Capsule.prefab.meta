@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 91be76c16cdfeae44a71e5f4d29f4ebb
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 371358
+  packageName: Gizmos Drawer
+  packageVersion: 1.0
+  assetPath: Assets/DuzeraTools/GizmosDrawer/Examples/Primitives/Gizmo Capsule.prefab
+  uploadId: 910692

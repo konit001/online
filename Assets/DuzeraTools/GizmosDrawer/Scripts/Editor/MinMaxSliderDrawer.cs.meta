@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: e2c4514affe08254db6aae4d0b145c0c
+AssetOrigin:
+  serializedVersion: 1
+  productId: 371358
+  packageName: Gizmos Drawer
+  packageVersion: 1.0
+  assetPath: Assets/DuzeraTools/GizmosDrawer/Scripts/Editor/MinMaxSliderDrawer.cs
+  uploadId: 910692

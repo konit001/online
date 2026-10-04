@@ -1,0 +1,623 @@
+GizmosDrawer Documentation
+==========================
+
+Version: 1.0
+Package type: Unity Editor tooling
+
+
+1. Overview
+-----------
+
+GizmosDrawer is a Unity editor-only toolkit for adding visual debug gizmos to GameObjects through MonoBehaviour components. It is designed to help developers, designers, and technical artists inspect gameplay systems directly in the Scene View without writing custom gizmo code for every object.
+
+The package includes gizmos for primitive shapes, vectors, movement previews, raycasts, field-of-view visualization, grids, locators, object bounds, rig bones, and rotation limits.
+
+Typical use cases include:
+
+- Debugging raycasts, object directions, field of view, and collision checks.
+- Visualizing paths, waypoint routes, throw arcs, and trajectory arcs.
+- Measuring object size from renderers and colliders.
+- Building level-design helpers such as grids, labels, and transform axes.
+- Inspecting rig hierarchies and rotation ranges.
+- Creating reusable editor-only visual helpers for gameplay components.
+
+All drawing is intended for Unity Editor Scene View workflows.
+
+
+2. Installation
+---------------
+
+Import the GizmosDrawer folder into a Unity project. The package is self-contained under:
+
+Assets/DuzeraTools/GizmosDrawer
+
+No scene setup or runtime initialization is required. Add any Gizmo component to a GameObject and configure it in the Inspector.
+
+
+3. Quick Start
+--------------
+
+1. Select a GameObject in the Unity Hierarchy.
+2. Click Add Component in the Inspector.
+3. Search for a component beginning with "Gizmo", such as GizmoRayCast, GizmoFOV, GizmoTrajectory, or GizmoSize.
+4. Adjust the shared gizmo settings such as Draw, Selection Only, Color, Size, and Thickness.
+5. Configure the component-specific settings.
+6. View the result in the Scene View.
+
+Example:
+
+- Add GizmoRayCast to an object.
+- Rotate the object so its forward axis points where you want to test.
+- Set Size to the ray length.
+- Set Layer Mask to the layers the ray should hit.
+- The Scene View will show the ray, hit point, hit normal, and dotted remainder.
+
+
+4. Editor-Only Behavior
+-----------------------
+
+GizmosDrawer is designed for editor visualization. Gizmos are drawn through Unity editor drawing callbacks and are meant to help during development.
+
+The components live in regular scripts and can be attached to GameObjects, but their drawing code is wrapped in UNITY_EDITOR compiler checks. The visual debug drawing is not intended as gameplay UI and should not be used as runtime rendering.
+
+
+4.1 Namespace
+-------------
+
+All package scripts are nested under this namespace:
+
+DuzeraTools.GizmosDrawer
+
+If you create custom gizmos or reference package types from your own scripts, add this using directive:
+
+using DuzeraTools.GizmosDrawer;
+
+
+5. Shared Gizmo Settings
+------------------------
+
+All gizmos inherit from the base Gizmo component and may expose the following shared options.
+
+Draw:
+Enables or disables drawing for this gizmo.
+
+Selection Only:
+When enabled, the gizmo is drawn only when the GameObject is selected.
+
+Color:
+The main color used by the gizmo.
+
+Size:
+A shared scale or distance value used by many gizmos. For example, it can control sphere radius, arrow length, ray length, grid cell size, or FOV radius depending on the component.
+
+Referenced Size:
+Optional FloatReference used to read Size from a live float field or property on another component.
+
+Thickness:
+Line thickness used by Handles drawing.
+
+Note:
+Some gizmos hide shared fields when those fields do not apply. For example, GizmoSize measures real object bounds and does not need the inherited Size scalar.
+
+
+6. FloatReference
+-----------------
+
+FloatReference is a helper that allows supported gizmo values to be driven by a float field or property from another object or component.
+
+It can be useful when the gizmo should mirror live gameplay data, such as:
+
+- AI detection radius.
+- Throw strength.
+- Trajectory length.
+- FOV angle.
+- Grid dimensions.
+- Rotation limits.
+
+How to use FloatReference:
+
+1. Assign a target object or component.
+2. Select or type the component type name.
+3. Select or type the float variable/property name.
+4. The gizmo reads that value while drawing in the Editor.
+
+If a FloatReference is not assigned, the gizmo uses its local fallback value.
+
+FloatReference supports float fields and float properties. It does not read int, Vector3, bool, or custom types.
+
+
+7. Primitive Gizmos
+-------------------
+
+GizmoArrowSingle:
+Draws one arrow aligned with the transform orientation. Useful for showing object direction or a simple heading marker.
+
+Main settings:
+- Wireframe: Draws only the outline when enabled.
+- Shared Size controls arrow scale.
+- Shared Thickness controls outline thickness.
+
+GizmoArrowMultiples:
+Draws multiple arrows aligned with the transform orientation. Useful for emphasizing a direction or creating a repeated visual marker.
+
+Main settings:
+- Arrow Count: Number of arrows to draw.
+- Shared Size controls arrow scale.
+
+GizmoCapsule:
+Draws a capsule shape with configurable direction, radius, and height.
+
+Main settings:
+- Direction: Capsule axis.
+- Radius: Capsule radius.
+- Height: Capsule height.
+
+Typical use:
+- Visualize character controller bounds.
+- Preview hitbox or trigger volume proportions.
+
+GizmoCircle:
+Draws a circle or partial arc around the object.
+
+Main settings:
+- Arc Angle: Circle arc in degrees.
+- Closed Arc: Draws closing lines from the center to arc edges.
+
+Typical use:
+- Range indicators.
+- Radius markers.
+- Partial angle previews.
+
+GizmoCube:
+Draws a cube in wireframe or filled mode.
+
+Main settings:
+- Wireframe: Toggle between outline and filled drawing.
+- Shared Size controls cube dimensions.
+
+GizmoLine:
+Draws a straight line through the transform.
+
+Typical use:
+- Simple axis/reference line.
+- Alignment helper.
+
+GizmoPlane:
+Draws a thin plane in wireframe or filled mode.
+
+Main settings:
+- Wireframe: Toggle between outline and filled drawing.
+- Shared Size controls plane width/depth.
+
+GizmoSphere:
+Draws a sphere in wireframe or filled mode.
+
+Main settings:
+- Wireframe: Toggle between outline and filled drawing.
+- Shared Size controls radius/scale.
+
+GizmoStar:
+Draws a star in wireframe or filled mode.
+
+Main settings:
+- Wireframe: Toggle between outline and filled drawing.
+- Shared Size controls star scale.
+
+
+8. Vector Gizmos
+----------------
+
+GizmoAngle:
+Displays the angle between two target transforms as an arc and degree label.
+
+Main settings:
+- Start Transform: First direction target.
+- End Transform: Second direction target.
+- Wireframe: Draws only the outline of the angle region.
+
+Typical use:
+- Debug aiming cones.
+- Measure angle between targets.
+- Inspect steering or look constraints.
+
+GizmoDirection:
+Draws an arrow from this transform toward a target transform.
+
+Main settings:
+- End Transform: Target transform.
+- Show Labels: Toggles rotation label.
+- Show As Quaternion: Shows quaternion values instead of Euler values.
+
+Typical use:
+- Visualize target direction.
+- Debug look-at logic.
+- Inspect world-space direction to an object.
+
+GizmoDistance:
+Measures and displays distance between two transforms.
+
+Main settings:
+- Start Transform: Optional start point. If empty, this object's transform is used.
+- Target Transform: Required end point.
+
+Typical use:
+- Debug ranges.
+- Measure object spacing.
+- Check trigger or interaction distances.
+
+GizmoPath:
+Draws a route through waypoint transforms.
+
+Main settings:
+- Waypoints: Ordered transform array.
+- Use Catmull Rom: Smooths the path using Catmull-Rom interpolation.
+- Show Distances: Shows segment and total distances.
+
+Typical use:
+- Visualize patrol routes.
+- Preview movement paths.
+- Debug waypoint order.
+
+GizmoSize:
+Draws a bounds box and size label for an object.
+
+Main settings:
+- Include Children: Includes child renderers/colliders in total bounds.
+- Include Renderers: Uses Renderer bounds.
+- Include Colliders: Uses Collider bounds.
+- Show Label: Displays X/Y/Z size above the box.
+
+Typical use:
+- Measure a prefab or object hierarchy.
+- Check collision/render bounds.
+- Validate asset scale in the Scene View.
+
+
+9. Movement Gizmos
+------------------
+
+GizmoThrow:
+Draws a physics-style throw preview using the object's forward direction as launch direction.
+
+Main settings:
+- Strength: Launch speed along transform.forward.
+- Referenced Strength: Optional FloatReference for Strength.
+- Gravity: Downward acceleration that bends the arc.
+- Referenced Gravity: Optional FloatReference for Gravity.
+- Duration: Preview time span.
+- Referenced Duration: Optional FloatReference for Duration.
+- Draw Launch Arrow: Shows the initial forward launch direction.
+- Show Labels: Shows strength/gravity text near the final preview point.
+- Stop At Collider: Raycasts along the trajectory segments and stops at the first hit.
+- Collision Layer Mask: Layers used by the trajectory collision test.
+
+Typical use:
+- Preview projectile launches.
+- Tune throw strength and gravity.
+- Debug arcing gameplay abilities.
+
+GizmoTrajectory:
+Draws a designer-controlled arc that is not physics based.
+
+Main settings:
+- Length: Forward distance from the object.
+- Referenced Length: Optional FloatReference for Length.
+- Height: Arc height at the middle control point.
+- Referenced Height: Optional FloatReference for Height.
+- Draw Direction Arrow: Shows forward direction.
+- Show Labels: Shows length/height text.
+- Stop At Collider: Raycasts along the trajectory segments and stops at the first hit.
+- Collision Layer Mask: Layers used by the trajectory collision test.
+
+Typical use:
+- Preview non-physics movement arcs.
+- Design ability jumps or throw visuals.
+- Build predictable designer-controlled trajectory helpers.
+
+GizmoVelocity:
+Samples transform movement over editor time and draws a velocity direction arrow.
+
+Main settings:
+- Show Speed Label: Displays current speed in units per second.
+- Minimum Speed To Draw: Ignores tiny motion values to avoid jitter.
+
+Typical use:
+- Inspect editor-time object movement.
+- Debug moving objects, animation previews, or tools that update transforms.
+
+
+10. Locator Gizmos
+------------------
+
+GizmoAxis:
+Draws local X, Y, and Z axes with separate colors.
+
+Main settings:
+- Show Labels: Shows X/Y/Z text labels.
+- Mirror: Draws negative axes as well.
+- X Color, Y Color, Z Color: Axis colors.
+
+Typical use:
+- Inspect transform orientation.
+- Debug imported asset axes.
+
+GizmoLocator:
+Draws a simple 3-axis crosshair locator.
+
+Typical use:
+- Mark important points.
+- Show spawn points, sockets, anchors, or pivots.
+
+GizmoLooking:
+Draws a disc and forward arrow that visualize facing direction.
+
+Typical use:
+- Debug character orientation.
+- Show camera or object facing.
+
+GizmoTitle:
+Draws a scene-view label and optional sprite icon above the object.
+
+Main settings:
+- Icon: Optional sprite icon.
+- Label: Custom label text.
+- Use GameObject Name: Uses the GameObject name instead of the custom label.
+
+Typical use:
+- Label important scene objects.
+- Mark spawn points, interactables, nodes, or debug objects.
+
+
+11. Collider Gizmos
+-------------------
+
+GizmoFOV:
+Draws a field-of-view sector on the XZ plane.
+
+Main settings:
+- Angle: FOV angle in degrees.
+- Referenced Angle: Optional FloatReference for Angle.
+- Wireframe: Draws only outlines when enabled.
+- Min Distance: Inner cutoff distance.
+- Referenced Min Distance: Optional FloatReference for Min Distance.
+- Stop At Collider: Clips FOV rays when they hit colliders.
+- Obstacle Mask: Layers used for occlusion.
+- Include Triggers: Includes trigger colliders in occlusion checks.
+
+Typical use:
+- Visualize AI vision.
+- Preview stealth detection areas.
+- Debug perception blockers.
+
+GizmoRayCast:
+Casts a ray along transform.forward and displays the result.
+
+Main settings:
+- Layer Mask: Layers the ray can hit.
+- Shared Size controls ray length.
+
+Drawn information:
+- Ray origin.
+- Ray end.
+- Hit point.
+- Hit normal.
+- Dotted line after hit.
+
+Typical use:
+- Debug aiming rays.
+- Inspect interaction checks.
+- Visualize ground/object detection rays.
+
+
+12. Grid Gizmos
+---------------
+
+Gizmo2DGrid:
+Draws a 2D grid on the transform right/forward plane.
+
+Main settings:
+- Width: Cell count across transform.right.
+- Referenced Width: Optional FloatReference for Width.
+- Depth: Cell count across transform.forward.
+- Referenced Depth: Optional FloatReference for Depth.
+- Show Grid Points: Draws points at intersections.
+- Show Grid Indexes: Shows cell coordinates.
+- Horizontal Alignment: Left, Center, or Right.
+- Depth Alignment: Back, Center, or Front.
+- Shared Size controls cell size.
+
+Typical use:
+- Level layout helpers.
+- Tile previews.
+- Placement grids.
+
+Gizmo3DGrid:
+Draws a 3D lattice grid.
+
+Main settings:
+- Width: Cell count across transform.right.
+- Referenced Width: Optional FloatReference for Width.
+- Depth: Cell count across transform.forward.
+- Referenced Depth: Optional FloatReference for Depth.
+- Height: Cell count across transform.up.
+- Referenced Height: Optional FloatReference for Height.
+- Show Grid Points: Draws points at vertices.
+- Show Grid Indexes: Shows cell coordinates.
+- Vertical Alignment: Bottom, Center, or Top.
+- Horizontal Alignment: Left, Center, or Right.
+- Depth Alignment: Back, Center, or Front.
+- Shared Size controls cell size.
+
+Typical use:
+- 3D level blocking.
+- Voxel or volume previews.
+- Spatial debugging.
+
+
+13. Rigging Gizmos
+------------------
+
+GizmoBones:
+Draws a transform hierarchy as bone connections.
+
+Main settings:
+- Draw Bone Spheres: Draws spheres at joints.
+- Spheres Color: Color for joint spheres.
+- Sphere Radius: Relative sphere radius.
+
+Typical use:
+- Inspect rig hierarchy.
+- Debug procedural bones.
+- Visualize object child chains.
+
+GizmoRotation:
+Draws possible rotation limits as an arc around the local up axis.
+
+Main settings:
+- Rotation Limits: Min/max angle range.
+- Referenced Min Angle: Optional FloatReference for minimum angle.
+- Referenced Max Angle: Optional FloatReference for maximum angle.
+- Closed Arc: Draws lines from the origin to arc endpoints.
+
+Typical use:
+- Debug turret limits.
+- Preview joint constraints.
+- Visualize animation or rigging rotation ranges.
+
+
+14. Custom Inspector
+--------------------
+
+GizmosDrawer includes a custom editor for Gizmo components. The custom inspector:
+
+- Shows the GizmoSummary text at the top.
+- Displays shared Gizmo Options.
+- Displays shared Gizmo Settings when relevant.
+- Displays component-specific fields after the shared settings.
+- Supports custom drawers such as FloatReference and MinMaxSlider.
+
+
+15. Drawing Helpers
+-------------------
+
+GizmoUtils contains shared drawing helper methods used by many gizmos. These helpers centralize common drawing behavior such as:
+
+- Labels.
+- Arrow shapes.
+- Conic arrows.
+- Normal arrows.
+- Normal circles.
+- Wire cubes.
+- Wire spheres.
+- Raycasts.
+- Raycast paths along sampled trajectory points.
+
+Most users do not need to call GizmoUtils directly. It is useful if you want to extend the package with custom gizmos.
+
+
+16. Creating Custom Gizmos
+--------------------------
+
+To create a custom gizmo:
+
+1. Create a new C# script that inherits from Gizmo.
+2. Add a GizmoSummary attribute to describe the component.
+3. Put drawing logic inside DrawGizmo.
+4. Use Handles, Gizmos, or GizmoUtils for visual drawing.
+5. Add serialized fields for user configuration.
+
+Example structure:
+
+using DuzeraTools.GizmosDrawer;
+
+public class GizmoExample : Gizmo
+{
+#if UNITY_EDITOR
+    protected override void DrawGizmo()
+    {
+        // Draw custom editor-only visualization here.
+    }
+#endif
+}
+
+For best results, follow the existing pattern:
+
+- Keep drawing code inside UNITY_EDITOR.
+- Use the shared Color, Size, and Thickness fields where they make sense.
+- Add clear serialized fields for component-specific options.
+- Use FloatReference for values that may need to mirror gameplay data.
+
+
+17. Performance Notes
+---------------------
+
+GizmosDrawer is intended for editor debugging. Complex gizmos, large grids, deep bone hierarchies, and many active raycasts can add Scene View overhead.
+
+Recommended practices:
+
+- Use Selection Only for heavy gizmos.
+- Disable Draw when a gizmo is not needed.
+- Keep grid dimensions reasonable.
+- Avoid attaching many collider-checking gizmos to large numbers of objects.
+- Use layer masks to keep raycast checks focused.
+
+
+18. Troubleshooting
+-------------------
+
+The gizmo is not visible:
+- Check that Draw is enabled.
+- If Selection Only is enabled, select the GameObject.
+- Make sure Scene View gizmos are enabled in Unity.
+- Confirm Color alpha is not zero.
+- Check Size or component-specific dimensions.
+
+FloatReference returns zero:
+- Confirm the target is assigned.
+- Confirm the component type name is correct.
+- Confirm the member name is a float field or float property.
+- Confirm the referenced component exists on the target.
+
+Raycast or trajectory collision does not hit:
+- Check the layer mask.
+- Confirm the target object has a Collider.
+- Confirm the ray or trajectory reaches the collider.
+- Check trigger settings where applicable.
+
+GizmoSize does not show a box:
+- Enable Include Renderers and/or Include Colliders.
+- Confirm the object or its children have Renderer or Collider components.
+- Enable Include Children if the visible/collider objects are under child transforms.
+
+
+19. Included File Structure
+---------------------------
+
+GizmosDrawer/
+- README.md
+- Documentation.txt
+- Scripts/
+  - Base/
+    - Gizmo.cs
+    - GizmoUtils.cs
+  - Editor/
+    - FloatReferenceDrawer.cs
+    - GizmoEditor.cs
+    - MinMaxSliderDrawer.cs
+  - Utils/
+    - FloatReference.cs
+    - MinMaxSliderAttribute.cs
+  - Gizmos/
+    - Colliders/
+    - Grids/
+    - Locators/
+    - Movement/
+    - Primitives/
+    - Rigging/
+    - Vectors/
+
+
+20. Support Notes
+-----------------
+
+This asset is designed to provide reusable editor visualization components. It does not replace Unity physics, runtime UI, or full custom editor tooling. It is meant to make development-time information easier to see and tune directly in the Scene View.

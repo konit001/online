@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f75e425673ba3654cb78c999f8ac4b8b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: 2800000, guid: 9c1ee049d0bed254890189e7b2cc42cc, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 371358
+  packageName: Gizmos Drawer
+  packageVersion: 1.0
+  assetPath: Assets/DuzeraTools/GizmosDrawer/Scripts/Gizmos/Colliders/GizmoFOV.cs
+  uploadId: 910692

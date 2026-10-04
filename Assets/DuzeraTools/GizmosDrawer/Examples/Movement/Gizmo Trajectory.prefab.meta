@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d486e43f6cd458544af1ce37c11909c5
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 371358
+  packageName: Gizmos Drawer
+  packageVersion: 1.0
+  assetPath: Assets/DuzeraTools/GizmosDrawer/Examples/Movement/Gizmo Trajectory.prefab
+  uploadId: 910692

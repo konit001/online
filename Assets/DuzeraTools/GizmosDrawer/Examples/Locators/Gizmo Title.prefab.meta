@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f146a60ce3118694d9b2bf26741d2a29
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 371358
+  packageName: Gizmos Drawer
+  packageVersion: 1.0
+  assetPath: Assets/DuzeraTools/GizmosDrawer/Examples/Locators/Gizmo Title.prefab
+  uploadId: 910692

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8c8902f8a8c25544c98a300a07ea9727
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 371358
+  packageName: Gizmos Drawer
+  packageVersion: 1.0
+  assetPath: Assets/DuzeraTools/GizmosDrawer/Examples/Colliders/Gizmo Raycast.prefab
+  uploadId: 910692

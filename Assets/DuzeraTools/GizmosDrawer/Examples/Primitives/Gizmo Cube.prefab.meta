@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cb20b229550b1434894d2e16b10a96d9
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 371358
+  packageName: Gizmos Drawer
+  packageVersion: 1.0
+  assetPath: Assets/DuzeraTools/GizmosDrawer/Examples/Primitives/Gizmo Cube.prefab
+  uploadId: 910692

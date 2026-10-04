@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e99710a5e5a5d924dac4afde28853e74
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 371358
+  packageName: Gizmos Drawer
+  packageVersion: 1.0
+  assetPath: Assets/DuzeraTools/GizmosDrawer/Examples/Vectors/Gizmo Distance.prefab
+  uploadId: 910692

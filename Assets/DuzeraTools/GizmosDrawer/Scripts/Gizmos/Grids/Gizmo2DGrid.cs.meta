@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: d0ce11a455723cd4b8e7ab6014813af8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: 2800000, guid: 9c1ee049d0bed254890189e7b2cc42cc, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 371358
+  packageName: Gizmos Drawer
+  packageVersion: 1.0
+  assetPath: Assets/DuzeraTools/GizmosDrawer/Scripts/Gizmos/Grids/Gizmo2DGrid.cs
+  uploadId: 910692

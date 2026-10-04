@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 35cdd079f9f186e4ea93f389cc31f2de
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 371358
+  packageName: Gizmos Drawer
+  packageVersion: 1.0
+  assetPath: Assets/DuzeraTools/GizmosDrawer/Examples/Rigging/Gizmo Bones.prefab
+  uploadId: 910692

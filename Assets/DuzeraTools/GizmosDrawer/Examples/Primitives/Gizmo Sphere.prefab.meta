@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: af5fb226f68867e4a8009c2940b0c4bd
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 371358
+  packageName: Gizmos Drawer
+  packageVersion: 1.0
+  assetPath: Assets/DuzeraTools/GizmosDrawer/Examples/Primitives/Gizmo Sphere.prefab
+  uploadId: 910692

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e92e2561fe0edb4479de1ed9d216b9ae
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 371358
+  packageName: Gizmos Drawer
+  packageVersion: 1.0
+  assetPath: Assets/DuzeraTools/GizmosDrawer/Examples/Colliders/Gizmo FOV.prefab
+  uploadId: 910692

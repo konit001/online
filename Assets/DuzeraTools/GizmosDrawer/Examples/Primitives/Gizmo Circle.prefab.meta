@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: fe5c3df2f59cbf042affb5fc33e5a5f6
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 371358
+  packageName: Gizmos Drawer
+  packageVersion: 1.0
+  assetPath: Assets/DuzeraTools/GizmosDrawer/Examples/Primitives/Gizmo Circle.prefab
+  uploadId: 910692

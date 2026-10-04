@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ce375d8cc87f8f547b877dbf4363ef1b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 371358
+  packageName: Gizmos Drawer
+  packageVersion: 1.0
+  assetPath: Assets/DuzeraTools/GizmosDrawer/Examples/Grids/Gizmo 2D Grid.prefab
+  uploadId: 910692

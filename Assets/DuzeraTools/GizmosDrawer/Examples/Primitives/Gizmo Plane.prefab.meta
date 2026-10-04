@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bfe0a4978a7778c4483a9b215dd160b9
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 371358
+  packageName: Gizmos Drawer
+  packageVersion: 1.0
+  assetPath: Assets/DuzeraTools/GizmosDrawer/Examples/Primitives/Gizmo Plane.prefab
+  uploadId: 910692
